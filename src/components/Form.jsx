@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
-    const { cardName,
+    const {
+      cardName,
       cardDescription,
       cardAttr1,
       cardAttr2,
@@ -11,7 +12,7 @@ class Form extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      hasTrunfo,
+      // hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -24,7 +25,7 @@ class Form extends React.Component {
             Nome:
             <input
               type="text"
-              name="name"
+              name="nameInput"
               data-testid="name-input"
               value={ cardName }
               onChange={ onInputChange }
@@ -34,7 +35,7 @@ class Form extends React.Component {
             Descrição:
             <textarea
               type="text"
-              name="area"
+              name="descriptionInput"
               data-testid="description-input"
               value={ cardDescription }
               onChange={ onInputChange }
@@ -44,7 +45,7 @@ class Form extends React.Component {
             attr1:
             <input
               type="number"
-              name="attr1"
+              name="attr1Input"
               data-testid="attr1-input"
               value={ cardAttr1 }
               onChange={ onInputChange }
@@ -54,7 +55,7 @@ class Form extends React.Component {
             attr2:
             <input
               type="number"
-              name="attr2"
+              name="attr2Input"
               data-testid="attr2-input"
               value={ cardAttr2 }
               onChange={ onInputChange }
@@ -64,7 +65,7 @@ class Form extends React.Component {
             attr3:
             <input
               type="number"
-              name="attr3"
+              name="attr3Input"
               data-testid="attr3-input"
               value={ cardAttr3 }
               onChange={ onInputChange }
@@ -74,7 +75,7 @@ class Form extends React.Component {
             Imagem:
             <input
               type="text"
-              name="img"
+              name="imageInput"
               data-testid="image-input"
               value={ cardImage }
               onChange={ onInputChange }
@@ -83,7 +84,7 @@ class Form extends React.Component {
           <label htmlFor="rare-input">
             Reridade:
             <select
-              name="select"
+              name="rareInput"
               data-testid="rare-input"
               value={ cardRare }
               onChange={ onInputChange }
@@ -97,10 +98,9 @@ class Form extends React.Component {
             Super Trybe Trunfo
             <input
               type="checkbox"
-              checked
-              name="confi"
+              name="trunfoInput"
               data-testid="trunfo-input"
-              value={ cardTrunfo }
+              checked={ cardTrunfo }
               onChange={ onInputChange }
             />
           </label>
@@ -127,7 +127,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.bool.isRequired,
+  // hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,

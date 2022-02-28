@@ -15,18 +15,19 @@ class App extends React.Component {
       attr3Input: '',
       imageInput: '',
       trunfoInput: false,
-      rareInput: '',
+      rareInput: 'normal',
       btnDisable: true,
+      array: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
+    this.save = this.save.bind(this);
   }
 
   handleChange({ target }) {
     const { name, type } = target;
     const value = type === 'checkbox' ? target.checked : target.value;
-
     this.setState({
       [name]: value,
     }, () => this.validate());
@@ -41,7 +42,9 @@ class App extends React.Component {
       imageInput,
       rareInput,
     } = this.state;
+
     this.setState({ btnDisable: true });
+
     const fields = [nameInput, descriptionInput, imageInput, rareInput];
     const notEmpty = fields.every((field) => field !== '');
 
@@ -61,6 +64,26 @@ class App extends React.Component {
     ) {
       this.setState({ btnDisable: false });
     }
+  }
+
+  // Tomei como base a aula do dia 22/02
+  save(event) {
+    event.preventDefault();
+    this.setState((prevState) => ({
+      array: [...prevState.array, prevState],
+    }), () => {
+      this.setState({
+        nameInput: '',
+        descriptionInput: '',
+        attr1Input: 0,
+        attr2Input: 0,
+        attr3Input: 0,
+        imageInput: '',
+        trunfoInput: false,
+        rareInput: 'normal',
+        btnDisable: true,
+      });
+    });
   }
 
   render() {
@@ -90,6 +113,7 @@ class App extends React.Component {
           cardTrunfo={ trunfoInput }
           onInputChange={ this.handleChange }
           isSaveButtonDisabled={ btnDisable }
+          onSaveButtonClick={ this.save }
         />
         <Card
           cardName={ nameInput }

@@ -26,6 +26,7 @@ class App extends React.Component {
     this.reset = this.reset.bind(this);
     this.trunfo = this.trunfo.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.removeCarta = this.removeCarta.bind(this);
   }
 
   handleChange({ target }) {
@@ -124,6 +125,16 @@ class App extends React.Component {
     }
   }
 
+  removeCarta(card) {
+    const { array } = this.state;
+    const cards = array.filter((item) => item.nameInput !== card.nameInput);
+    const verificaTrunfo = card.trunfoInput;
+    this.setState({
+      array: cards,
+      hasTrunfo: !verificaTrunfo,
+    });
+  }
+
   render() {
     const {
       nameInput,
@@ -166,19 +177,32 @@ class App extends React.Component {
           cardImage={ imageInput }
           cardTrunfo={ trunfoInput }
         />
-        { array.map((card) => (
-          <Card
-            cardName={ card.nameInput }
-            cardDescription={ card.descriptionInput }
-            cardAttr1={ card.attr1Input }
-            cardAttr2={ card.attr2Input }
-            cardAttr3={ card.attr3Input }
-            cardRare={ card.rareInput }
-            cardImage={ card.imageInput }
-            cardTrunfo={ card.trunfoInput }
-            key={ card.nameInput }
-          />
-        ))}
+        <div>
+          <div>
+            { array.map((card) => (
+              <div key={ card.nameInput }>
+                <Card
+                  cardName={ card.nameInput }
+                  cardDescription={ card.descriptionInput }
+                  cardAttr1={ card.attr1Input }
+                  cardAttr2={ card.attr2Input }
+                  cardAttr3={ card.attr3Input }
+                  cardRare={ card.rareInput }
+                  cardImage={ card.imageInput }
+                  cardTrunfo={ card.trunfoInput }
+                  key={ card.nameInput }
+                />
+                <button
+                  data-testid="delete-button"
+                  type="button"
+                  onClick={ () => this.removeCarta(card) }
+                >
+                  Excluir
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
